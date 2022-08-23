@@ -24,6 +24,9 @@ app.get("/api/hello", function (req, res) {
   res.json({greeting: 'hello API'});
 });
 
+app.get("/api/:param", function (req, res) {
+  res.json({greeting: req.params.param});
+});
 
 
 // listen for requests :)
