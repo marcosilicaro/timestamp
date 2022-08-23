@@ -24,8 +24,8 @@ app.get("/api/hello", function (req, res) {
   res.json({greeting: 'hello API'});
 });
 
-app.get("/api/:param", function (req, res) {
-  res.json({greeting: req.params.param});
+app.get("/api/date", function (req, res) {
+  res.json({greeting: new Date()});
 });
 
 
