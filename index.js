@@ -24,8 +24,39 @@ app.get("/api/hello", function (req, res) {
   res.json({greeting: 'hello API'});
 });
 
-app.get("/api/date", function (req, res) {
-  res.json({greeting: new Date()});
+app.get("/api/:unix", function (req, res) {
+  
+  function timeConverter(UNIX_timestamp){
+    var a = new Date(UNIX_timestamp * 1000);
+    var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    var year = a.getFullYear();
+    var month = months[a.getMonth()];
+    var date = a.getDate();
+    var hour = a.getHours();
+    var min = a.getMinutes();
+    var sec = a.getSeconds();
+    let day=()=>{
+      let day = a.getDay()
+      if (day===0){
+        return 'Sun'
+      } else if (day===1){
+        return 'Mon'
+      } else if (day===2){
+        return 'Tue'
+      } else if (day===3){
+        return 'Wed'
+      } else if (day===4){
+        return 'Thu'
+      } else if (day===5){
+        return 'Fri'
+      } else if (day===6){
+        return 'Sat'
+      }
+    }
+    var time = day() +', '+ date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
+    return time;
+  }
+  res.json({unix: parseInt(req.params.unix), utc: timeConverter(req.params.unix)});
 });
 
 
