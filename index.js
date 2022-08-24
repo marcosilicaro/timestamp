@@ -56,7 +56,7 @@ app.get("/api/:unix", function (req, res) {
     var time = day() +', '+ date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec + ' GMT' ;
     return time;
   }
-  res.json({unix: parseInt(req.params.unix), utc: timeConverter(req.params.unix)});
+  res.json({unix: parseInt(req.params.unix), utc: new Date(req.params.unix).toUTCString()  });
 });
 
 
