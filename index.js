@@ -53,7 +53,7 @@ app.get("/api/:unix", function (req, res) {
         return 'Sat'
       }
     }
-    var time = day() +', '+ date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec + 'GMT' ;
+    var time = day() +', '+ date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec + ' GMT' ;
     return time;
   }
   res.json({unix: parseInt(req.params.unix), utc: timeConverter(req.params.unix)});
