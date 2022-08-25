@@ -24,10 +24,7 @@ app.get("/api/hello", function (req, res) {
   res.json({greeting: 'hello API'});
 });
 
-app.get("/api/:date", function (req, res, err) {
-
-  // error handling
-  console.error(err)
+app.get("/api/:date", function (req, res) {
 
   // transforms URL param to date object
   let dateInput = new Date(parseInt(req.params.date))
@@ -35,12 +32,17 @@ app.get("/api/:date", function (req, res, err) {
   // is the URL param unix?
   if (req.params.date.length>10){
     res.json({unix: parseInt(req.params.date), utc: dateInput.toUTCString()});
-  } else {
+  }else {
     // it is a date. E.g. 2015-10-05
     res.json({unix: new Date(req.params.date).getTime(), utc: new Date(req.params.date).toUTCString()});
-  }
-  
+  } 
 });
+
+app.get("/api/", function (req, res) {
+
+  let newDate= new Date()
+  res.json({unix: newDate.getTime(), utc: newDate.toUTCString()});
+})
 
 
 // listen for requests :)
