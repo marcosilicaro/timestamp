@@ -34,7 +34,8 @@ app.get("/api/:date", function (req, res) {
     res.json({unix: parseInt(req.params.date), utc: dateInput.toUTCString()});
   }else {
     // it is a date. E.g. 2015-10-05
-    res.json({unix: new Date(req.params.date).getTime(), utc: new Date(req.params.date).toUTCString()});
+    newDate=new Date(req.params.date)
+    res.json({unix: newDate.getTime(), utc: newDate.toUTCString()});
   } 
 });
 
