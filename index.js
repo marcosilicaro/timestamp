@@ -24,7 +24,10 @@ app.get("/api/hello", function (req, res) {
   res.json({greeting: 'hello API'});
 });
 
-app.get("/api/:date", function (req, res) {
+app.get("/api/:date", function (req, res, err) {
+
+  // error handling
+  console.error(err)
 
   // transforms URL param to date object
   let dateInput = new Date(parseInt(req.params.date))
