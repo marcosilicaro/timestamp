@@ -24,10 +24,10 @@ app.get("/api/hello", function (req, res) {
   res.json({greeting: 'hello API'});
 });
 
-app.get("/api/:date", function (req, res) {
+app.get("/api/:date_string", function (req, res) {
 
   // transforms URL param to date object
-  let dateInput = new Date(parseInt(req.params.date))
+  let dateInput = new Date(parseInt(req.params.date_string))
 
   // error handling
   if (dateInput=="Invalid Date"){
@@ -35,11 +35,11 @@ app.get("/api/:date", function (req, res) {
   }
   
   // is the URL param unix?
-  if (req.params.date.length>10){
-    res.json({unix: parseInt(req.params.date), utc: dateInput.toUTCString()});
+  if (req.params.date_string.length>10){
+    res.json({unix: parseInt(req.params.date_string), utc: dateInput.toUTCString()});
   }else {
     // it is a date. E.g. 2015-10-05
-    newDate=new Date(req.params.date)
+    newDate=new Date(req.params.date_string)
     res.json({unix: newDate.getTime(), utc: newDate.toUTCString()});
   } 
 });
